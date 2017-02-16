@@ -3,12 +3,12 @@ require "minitest/autorun"
 # A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
 # Find the largest palindrome made from the product of two 3-digit numbers.
 
-class TestMeme < Minitest::Test
+class ProjectEulerTests < Minitest::Test
   def largest_palindrome_number(min=10, max=99)
     max_palindrome = 0
 
-    (min..(max+1)).each do |a|
-      ((a+1)..(max+1)).each do |b|
+    (min..max).each do |a|
+      (a..max).each do |b|
         prod = a * b
         max_palindrome = prod if prod > max_palindrome and is_palindrome(prod)
       end
