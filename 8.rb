@@ -22,20 +22,22 @@ class ProjectEulerTests < Minitest::Test
   '05886116467109405077541002256983155200055935729725'\
   '71636269561882670428252483600823257530420752963450'\
 
-  def largest_product_in_series(num)
+  def largest_product_in_series(num, adjacent)
+    arr = num.scan(/\d/).map { |i| i.to_i }
+
+    temp = 0
     largest = 0
 
-    num.each_char.map(&:to_i).each_with_index do |c, i|
-      if (i+1) % 4 == 0
-        prod = num[i].to_i  * num[i+1].to_i * num[i+2].to_i * num[i+3].to_i
-        largest = prod if prod > largest
-      end
+    for i in 0..999
+      temp = arr[i...i+adjacent].inject(:*)
+      largest = temp if temp > largest
     end
 
     largest
   end
 
   def test_largest_product_in_series
-    assert_equal 5832, largest_product_in_series(NUMBER)
+    assert_equal 5832, largest_product_in_series(NUMBER, 4)
+    assert_equal 23514624000, largest_product_in_series(NUMBER, 13)
   end
 end
