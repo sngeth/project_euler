@@ -8,7 +8,7 @@ class ProjectEulerTests < Minitest::Test
     (2**1000).to_s.chars.map(&:to_i).reduce(:+)
   end
 
-  def test_lattice_paths
+  def test_power_digit_sum
     assert 1366, power_digit_sum
   end
 end
