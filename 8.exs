@@ -1,16 +1,16 @@
 defmodule LargestProduct do
-  def product_of_next(size, nums, max) when length(nums) == size do
-    max
-  end
-
   def product_of_next(size, nums, max) do
-    product =
-      Enum.slice(nums, 0..size-1)
-      |> Enum.reduce(&*/2)
+    if length(nums) == 4 do
+      max
+    else
+      product =
+        Enum.slice(nums, 0..size-1)
+        |> Enum.reduce(&*/2)
 
-    max = if product > max, do: product, else: max
+      max = if product > max, do: product, else: max
 
-    product_of_next(size, List.delete_at(nums, 0), max)
+      product_of_next(size, List.delete_at(nums, 0), max)
+    end
   end
 
 end
